@@ -235,7 +235,14 @@ class ASRAudioText(AudioText):
 class SpeechLabel(_Collection):
     """List of audio-label correspondence with preprocessing."""
 
-    OUTPUT_TYPE = collections.namedtuple(typename='SpeechLabelEntity', field_names='audio_file duration label offset',)
+    class SpeechLabelEntity():
+        def __init__(self, audio_file, duration, label, offset):
+            self.audio_file = audio_file
+            self.duration = duration
+            self.label = label
+            self.offset = offset
+        
+    OUTPUT_TYPE = SpeechLabelEntity
 
     def __init__(
         self,
